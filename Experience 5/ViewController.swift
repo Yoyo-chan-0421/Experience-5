@@ -11,11 +11,11 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     let mememeTextAttributed: [NSAttributedString.Key : Any] = [
-        NSAttributedString.Key.strokeColor : UIColor.black,
-        NSAttributedString.Key.foregroundColor : UIColor.white,
-        NSAttributedString.Key.strokeWidth : -3.0,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 52)
-    ] as [NSAttributedString.Key : Any]
+        NSAttributedString.Key.strokeColor: UIColor.black,
+               NSAttributedString.Key.foregroundColor:UIColor.white,
+               NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+               NSAttributedString.Key.strokeWidth: -2.0
+    ]
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
@@ -36,7 +36,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
     }
-   
+    
+    @IBAction func topText(_ sender: Any) {
+        textFieldDidBeginEditing(topTextField)
+                
+    }
+    @IBAction func bottomText(_ sender: Any) {
+        textFieldDidBeginEditing(bottomTextField)
+    }
     @IBAction func pickAnImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -59,6 +66,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
             dismiss(animated: true, completion: nil)
         }
     }
+   // Could you also answer why my textFieldDidBeginEditing is not working also why textFieldShouldReturn is not working thank you!
+    func textFieldDidBeginEditing(_ textField: UITextField){
+            if (textField == topTextField && textField.text == "TOP") || (textField == bottomTextField && textField.text == "BOTTOM"){
+                textField.text = " "
+            }
+        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+             textField.resignFirstResponder()
+            return true
+        }
+
+    
 
 }
-
