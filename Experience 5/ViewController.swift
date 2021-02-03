@@ -66,7 +66,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
             dismiss(animated: true, completion: nil)
         }
     }
-   // Could you also answer why my textFieldDidBeginEditing is not working also why textFieldShouldReturn is not working thank you!
+   
     func textFieldDidBeginEditing(_ textField: UITextField){
             if (textField == topTextField && textField.text == "TOP") || (textField == bottomTextField && textField.text == "BOTTOM"){
                 textField.text = " "
